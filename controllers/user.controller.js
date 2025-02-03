@@ -1,8 +1,8 @@
 import express from 'express'
 import User from "../models/userModel.js";
 
-const signup = async()=>{
-    try{const {username,email,password} = req.body()
+const signup = async(req,res)=>{
+    try{const {username,email,password} = req.body
 
     if(!username){
         res.status(400).json({msg:"Username cannot be empty"})
@@ -11,7 +11,7 @@ const signup = async()=>{
         res.status(400).json({msg:"email cannot be empty"})
     }
 
-    if(password.length()<8 || password.length()>16){
+    if(password.length<8 || password.length>16){
         res.status(400).json({msg:"Password length should be greater than 8 or less than or equal to 16"})
     }
 
